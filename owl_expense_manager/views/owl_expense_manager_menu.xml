@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_actions_expense_manager_action" model="ir.actions.client">
+        <field name="name">OWL Expense Manager</field>
+        <field name="path">expense-manager</field>
+        <field name="tag">action_owl_expense_manager</field>
+    </record>
+
+    <menuitem
+        id="owl_expense_manager_menu_root"
+        name="OWL Expense Manager"
+        action="ir_actions_expense_manager_action"
+        web_icon="owl_expense_manager,static/description/icon.png"
+    />
+</odoo>
