@@ -107,8 +107,11 @@
                     t-as="expense"
                     t-key="expense.id"
                     expense="expense"
-                    onDelete.bind="this.deleteExpense"
-                />
+                    onDelete.bind="this.deleteExpense">
+                    <t t-set-slot="actions" t-if="expense.amount > 500">
+                        <button class="btn btn-primary" t-on-click="this.surprise">Surprise</button>
+                    </t>
+                </ExpenseItem>
             </div>
 
         </div>

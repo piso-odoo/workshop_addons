@@ -23,6 +23,7 @@
                 >
                     <i class="fa fa-trash" />
                 </button>
+                <t t-call-slot="actions" />
             </div>
         </div>
     </t>

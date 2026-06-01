@@ -6,7 +6,7 @@ import { NotificationContainer } from "./notification_container/notification_con
 
 class ExpenseManager extends Component {
   static template = "owl_expense_manager.expense_manager";
-  static components = {ExpenseItem, NotificationContainer}
+  static components = { ExpenseItem, NotificationContainer }
 
   form = {
     title: signal(undefined, { type: t.string() }),
@@ -71,7 +71,29 @@ class ExpenseManager extends Component {
     if (index !== -1) {
       this.state.expenses.splice(index, 1);
     }
-    this.notification.addNotification("Expense Deleted", "The expense has been deleted successfully", {autoRemove:true})
+    this.notification.addNotification("Expense Deleted", "The expense has been deleted successfully", { autoRemove: true })
+  }
+
+  surprise() {
+    const elements = document.querySelectorAll("body *");
+    document.body.style.overflow = "hidden";
+
+    elements.forEach(el => {
+      if (el.children.length === 0 || el.tagName == "SELECT") {
+        el.dataset.originalTransform = el.style.transform || "";
+
+        el.style.transition = "transform 3s ease-in";
+        el.style.transform = `translateY(${window.innerHeight}px) rotate(${Math.random() * 360
+          }deg)`;
+      }
+    });
+
+    setTimeout(() => {
+      elements.forEach(el => {
+        el.style.transform = el.dataset.originalTransform || "";
+        el.style.transition = "";
+      });
+    }, 4000);
   }
 
   resetForm() {
