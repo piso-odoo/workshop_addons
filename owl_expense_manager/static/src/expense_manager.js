@@ -1,10 +1,12 @@
-import { Component, proxy, signal, computed, types as t, onWillStart } from "@odoo/owl";
+import { Component, proxy, signal, computed, types as t, onWillStart, providePlugins, plugin, onMounted } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { ExpenseItem } from "./expense_item/expense_item";
+import { NotificationPlugin } from "./notification_plugin";
+import { NotificationContainer } from "./notification_container/notification_container";
 
 class ExpenseManager extends Component {
   static template = "owl_expense_manager.expense_manager";
-  static components = {ExpenseItem}
+  static components = {ExpenseItem, NotificationContainer}
 
   form = {
     title: signal(undefined, { type: t.string() }),
@@ -21,6 +23,10 @@ class ExpenseManager extends Component {
         category: "all",
       }
     });
+
+    providePlugins([NotificationPlugin]);
+
+    this.notification = plugin(NotificationPlugin);
 
     onWillStart(async () => {
       this.state.expenses = await fetch('/owl_expense_manager/static/description/demo.json').then((res) => res.json());
@@ -56,6 +62,7 @@ class ExpenseManager extends Component {
       amount,
       category,
     });
+    this.notification.addNotification("Expense Added", "The expense has been deleted successfully");
     this.resetForm();
   }
 
@@ -64,6 +71,7 @@ class ExpenseManager extends Component {
     if (index !== -1) {
       this.state.expenses.splice(index, 1);
     }
+    this.notification.addNotification("Expense Deleted", "The expense has been deleted successfully", {autoRemove:true})
   }
 
   resetForm() {

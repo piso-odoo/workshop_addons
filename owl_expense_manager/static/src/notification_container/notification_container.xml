@@ -1,0 +1,18 @@
+<templates>
+    <t t-name="owl_expense_manager.notification_container">
+        <div class="o_notification_manager">
+            <div class="o_notification d-flex justify-content-between align-items-center mb-2 p-2 shadow-lg" t-foreach="this.notification.notifications()"
+                t-as="notification" t-key="notification.id">
+                <div class="o_notification_body">
+                    <t t-out="notification.title">
+                        <h2 />
+                    </t>
+                    <t t-out="notification.description">
+                        <p />
+                    </t>
+                </div>
+                <span class="btn o_button" t-on-click.stop="() => notification.remove()" title="Remove"><span class="fa fa-close"/></span>
+            </div>
+        </div>
+    </t>
+</templates>
