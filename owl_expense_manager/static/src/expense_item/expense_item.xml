@@ -1,0 +1,29 @@
+<templates>
+    <t t-name="owl_expense_manager.expense_manager_item">
+        <div class="o_expense_item">
+            <div class="o_expense_info">
+                <div class="o_expense_title">
+                    <t t-out="this.props.expense.title" />
+                </div>
+
+                <div class="o_expense_category">
+                    <span
+                        t-att-class="'o_category_badge cat-' + this.props.expense.category.toLowerCase()">
+                        <t t-out="this.props.expense.category" />
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="o_expense_right">
+                <div class="o_expense_amount">₹ <t t-out="this.props.expense.amount" /></div>
+                <button
+                    class="o_expense_delete"
+                    t-on-click="() => this.props.onDelete(this.props.expense.id)"
+                >
+                    <i class="fa fa-trash" />
+                </button>
+            </div>
+        </div>
+    </t>
+</templates>

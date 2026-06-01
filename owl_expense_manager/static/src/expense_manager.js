@@ -1,8 +1,10 @@
-import { Component, xml, proxy, signal, types as t } from "@odoo/owl";
+import { Component, proxy, signal, computed, types as t } from "@odoo/owl";
 import { registry } from "@web/core/registry";
+import { ExpenseItem } from "./expense_item/expense_item";
 
 class ExpenseManager extends Component {
   static template = "owl_expense_manager.expense_manager";
+  static components = {ExpenseItem}
 
   form = {
     title: signal(undefined, { type: t.string() }),
@@ -23,9 +25,21 @@ class ExpenseManager extends Component {
         amount: 3456,
         category: "Shopping"
       }],
-      form: this.form
+      form: this.form,
+      filters: {
+        query: "",
+        category: "all",
+      }
     });
+
   }
+
+  filteredExpenses = computed(() => {
+    const filters = this.state.filters;
+    return this.state.expenses.filter((expense) => {
+      return expense.title.toLowerCase().includes(filters.query.toLowerCase()) && (filters.category == "all" || expense.category == filters.category);
+    });
+  })
 
   get formValues() {
     return {

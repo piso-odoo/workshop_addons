@@ -60,6 +60,36 @@
 
             </div>
 
+            <div class="o_expense_filter">
+                <h2>Filters</h2>
+                <div class="o_expense_form">
+                    <div class="o_field">
+                        <label>Title</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search expense"
+                            t-model.proxy="this.state.filters.query"
+                        />
+                    </div>
+                    <div class="o_field">
+                        <label>Category</label>
+                        <select
+                            class="form-select"
+                            t-model.proxy="this.state.filters.category"
+                        >
+                            <option value="">Select Category</option>
+                            <option value="all">All</option>
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <!-- Empty State -->
             <div
                 t-if="!this.state.expenses.length"
@@ -71,42 +101,14 @@
             <!-- Expense List -->
             <div
                 t-else=""
-                class="o_expense_list"
-            >
-                <div
-                    class="o_expense_item"
-                    t-foreach="this.state.expenses"
+                class="o_expense_list">
+                <ExpenseItem
+                    t-foreach="this.filteredExpenses()"
                     t-as="expense"
                     t-key="expense.id"
-                >
-
-                    <!-- Left -->
-                    <div class="o_expense_info">
-
-                        <div class="o_expense_title">
-                            <t t-out="expense.title" />
-                        </div>
-
-                        <div class="o_expense_category">
-                            <span
-                                t-att-class="'o_category_badge cat-' + expense.category.toLowerCase()">
-                                <t t-out="expense.category" />
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <!-- Right -->
-                    <div class="o_expense_right">
-                        <div class="o_expense_amount">₹ <t t-out="expense.amount" /></div>
-                        <button class="o_expense_delete"
-                            t-on-click="() => this.deleteExpense(expense.id)"
-                        >
-                            <i class="fa fa-trash" />
-                        </button>
-                    </div>
-
-                </div>
+                    expense="expense"
+                    onDelete.bind="this.deleteExpense"
+                />
             </div>
 
         </div>
