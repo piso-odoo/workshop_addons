@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "title": "Chips",
+    "amount": 123.34,
+    "category": "Food"
+  },
+  {
+    "id": "2",
+    "title": "Bus Ticket",
+    "amount": 45.00,
+    "category": "Travel"
+  },
+  {
+    "id": "3",
+    "title": "T-Shirt",
+    "amount": 799.99,
+    "category": "Shopping"
+  },
+  {
+    "id": "4",
+    "title": "Electricity Bill",
+    "amount": 1450.50,
+    "category": "Bills"
+  },
+  {
+    "id": "5",
+    "title": "Birthday Gift",
+    "amount": 500.00,
+    "category": "Other"
+  }
+]

@@ -1,4 +1,4 @@
-import { Component, proxy, signal, computed, types as t } from "@odoo/owl";
+import { Component, proxy, signal, computed, types as t, onWillStart } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { ExpenseItem } from "./expense_item/expense_item";
 
@@ -14,17 +14,7 @@ class ExpenseManager extends Component {
 
   setup() {
     this.state = proxy({
-      expenses: [{
-        id: window.crypto.randomUUID(),
-        title: "Chips",
-        amount: 123.34,
-        category: "Food"
-      }, {
-        id: window.crypto.randomUUID(),
-        title: "Keyboard",
-        amount: 3456,
-        category: "Shopping"
-      }],
+      expenses: [],
       form: this.form,
       filters: {
         query: "",
@@ -32,7 +22,11 @@ class ExpenseManager extends Component {
       }
     });
 
+    onWillStart(async () => {
+      this.state.expenses = await fetch('/owl_expense_manager/static/description/demo.json').then((res) => res.json());
+    })
   }
+
 
   filteredExpenses = computed(() => {
     const filters = this.state.filters;
