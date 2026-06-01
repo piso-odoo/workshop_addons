@@ -1,0 +1,206 @@
+.o_expense_manager {
+    padding: 20px;
+    border-radius: 12px;
+
+    background-color: var(
+        --o-view-background-color,
+        var(--o-webclient-background-color)
+    );
+
+    border: 1px solid var(--border-color, #dee2e6);
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.o_expense_header {
+    margin-bottom: 24px;
+
+    h3 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--body-color);
+    }
+
+    p {
+        font-size: 0.875rem;
+    }
+}
+
+
+/* =========================
+   Form
+========================= */
+
+.o_expense_form {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background-color: var(
+        --o-list-table-bg,
+        rgba(0, 0, 0, 0.02)
+    );
+
+    border: 1px solid var(--border-color, #dee2e6);
+}
+
+.o_field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--body-color);
+    }
+}
+
+.o_form_action {
+    display: flex;
+    align-items: flex-end;
+}
+
+
+/* =========================
+   Expense List
+========================= */
+
+.o_expense_list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* =========================
+   Expense Item
+========================= */
+
+.o_expense_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px;
+
+    border-radius: 10px;
+
+    background-color: var(
+        --o-list-table-bg,
+        rgba(0, 0, 0, 0.02)
+    );
+
+    border: 1px solid var(--border-color, #dee2e6);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+
+    &:hover {
+        background-color: var(
+            --o-list-hover-bg-color,
+            rgba(0, 0, 0, 0.04)
+        );
+
+        transform: translateY(-1px);
+    }
+}
+
+
+/* =========================
+   Left Content
+========================= */
+
+.o_expense_info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.o_expense_title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--body-color);
+}
+
+
+/* =========================
+   Amount
+========================= */
+
+.o_expense_amount {
+    font-size: 1rem;
+    font-weight: 700;
+
+    color: var(--o-success, #198754);
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   Empty State
+========================= */
+
+.o_expense_empty {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    border: 1px dashed var(--border-color, #dee2e6);
+
+    color: var(--text-muted);
+}
+
+/* Category badges */
+.o_category_badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+.o_category_badge.cat-food     { background: rgba(30,150,90,0.18);  color: #4ecca3; }
+.o_category_badge.cat-travel   { background: rgba(59,130,246,0.18); color: #60a5fa; }
+.o_category_badge.cat-shopping { background: rgba(245,158,11,0.18); color: #fbbf24; }
+.o_category_badge.cat-bills    { background: rgba(239,68,68,0.18);  color: #f87171; }
+.o_category_badge.cat-other    { background: rgba(139,92,246,0.18); color: #c4b5fd; }
+
+/* Right side */
+.o_expense_right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.o_expense_delete {
+  background: none;
+  border: none;
+  color: #8892a4;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.o_expense_delete:hover {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+}
